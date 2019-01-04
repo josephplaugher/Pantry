@@ -9,7 +9,7 @@ import 'css/workingPane.css'
 import 'css/form.css'
 import 'react-table/react-table.css'
 
-class AllItems extends React.Component {
+class AllStores extends React.Component {
 
   constructor(props) {
     super(props);
@@ -21,7 +21,7 @@ class AllItems extends React.Component {
   }
   
   componentDidMount() {
-      Ajax.get(SetUrl() + "/getAllItems")
+      Ajax.get(SetUrl() + "/getAllStores")
       .then(res => {
           this.setState({
             table: res.data.table
@@ -49,16 +49,12 @@ class AllItems extends React.Component {
 
     render() {
       const columns = [
-        {Header: 'ID', accessor: 'id'},
-        {Header: 'Item', accessor: 'item'},
-        {Header: 'Description', accessor: 'description'},
-        {Header: 'Units per Package', accessor: 'units'},
-        {Header: 'Grocery Store', accessor: 'store'},
-        {Header: 'Storage Location', accessor: 'storage'}]
+        {Header: 'Store Name', accessor: 'store'},
+        {Header: 'ID', accessor: 'id'}]
 
       return (
         <div id="workingPane">
-          <p className="formTitle">All Pantry Items</p>
+          <p className="formTitle">All Grocery Stores</p>
             <div >
             <EB comp="ReactTable in COA">
             <ReactTable
@@ -78,14 +74,10 @@ class AllItems extends React.Component {
             {this.state.dataView ? (
               <div id="lightbox-container" className="lightbox-background">
               <LightBox close={this.closeLightBox} >
-                <Form formTitle="Item Details" onSubmit={this.onSubmit}  >
-                <Input name="id" label="Item ID" prePopVal={this.state.id} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="item" label="item" prePopVal={this.state.item} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="description" label="Description" prePopVal={this.state.description} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="unit" label="Units per package" prePopVal={this.state.unit} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="store" label="Grocery Store" prePopVal={this.state.store} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="storage" label="Storage Location" prePopVal={this.state.storage} className="textinput" labelClass="label" errorClass="input-error" />
-                </Form>
+                <Form formTitle="Store Details" onSubmit={this.onSubmit}  >
+                <Input name="id" label="Store ID" prePopVal={this.state.id} className="textinput" labelClass="label" errorClass="input-error" />
+                <Input name="store" label="Store Name" prePopVal={this.state.store} className="textinput" labelClass="label" errorClass="input-error" />
+                   </Form>
               </LightBox>  
               </div>
             ):(
@@ -98,4 +90,4 @@ class AllItems extends React.Component {
     }
 }
 
-export default AllItems;
+export default AllStores;

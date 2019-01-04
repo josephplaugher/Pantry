@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 const app = express();
 const cookieParser = require('cookie-parser');
 const getAllItems = require('./model/getAllItems');
+const getAllStores = require('./model/getAllStores');
 const newItem = require('./model/newItem');
+const newStore = require('./model/newStore');
 const searchItems = require('./model/searchItems');
 
 app.use(express.static('public'));
@@ -42,11 +44,10 @@ app.get('/checkLoginState', Auth, (req, res) => {
 */
 
 app.get('/getAllItems',  getAllItems);
+app.get('/getAllStores',  getAllStores);
 app.post('/searchItems', searchItems);
-app.post('/newItem', (req, res) => {
-  const Item = new newItem(req, res);
-  Item.preprocess();
-});
+app.post('/newItem', newItem);
+app.post('/newStore', newStore);
 //this route renders the UI. The UI will check for the cookie and token
 //and log the user out if they don't exist.
 app.all('/*', (req, res) => {
