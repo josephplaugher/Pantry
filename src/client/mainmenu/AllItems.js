@@ -4,6 +4,7 @@ import ReactTable from 'react-table'
 import EB from 'Util/EB'
 import SetUrl from 'Util/SetUrl'
 import LightBox from 'Util/LightBox'
+import UseItem from 'Util/UseItem'
 import {Form, Input, Button} from 'reactform-appco'
 import 'css/workingPane.css'
 import 'css/form.css'
@@ -49,7 +50,7 @@ class AllItems extends React.Component {
 
     render() {
       const columns = [
-        {Header: 'ID', accessor: 'id'},
+        {Header: 'ID', accessor: 'id', width: 30},
         {Header: 'Item', accessor: 'item'},
         {Header: 'Description', accessor: 'description'},
         {Header: 'Units per Package', accessor: 'units'},
@@ -85,7 +86,13 @@ class AllItems extends React.Component {
                 <Input name="unit" label="Units per package" prePopVal={this.state.unit} className="textinput" labelClass="label" errorClass="input-error" />
                 <Input name="store" label="Grocery Store" prePopVal={this.state.store} className="textinput" labelClass="label" errorClass="input-error" />
                 <Input name="storage" label="Storage Location" prePopVal={this.state.storage} className="textinput" labelClass="label" errorClass="input-error" />
+                <Input name="par" label="Par" prePopVal={this.state.par} className="textinput" labelClass="label" errorClass="input-error" />
+                <Input name="instock" label="In Stock" prePopVal={this.state.instock} className="textinput" labelClass="label" errorClass="input-error" />
+                <Input name="shoppinglist" label="Shopping List" prePopVal={this.state.shoppinglist} className="textinput" labelClass="label" errorClass="input-error" />
                 </Form>
+              <EB comp="Use Item in AllItems">
+                <UseItem itemID={this.state.id} />
+              </EB>  
               </LightBox>  
               </div>
             ):(

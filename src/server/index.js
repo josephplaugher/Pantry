@@ -8,6 +8,7 @@ const getAllStores = require('./model/getAllStores');
 const newItem = require('./model/newItem');
 const newStore = require('./model/newStore');
 const searchItems = require('./model/searchItems');
+const useItem = require('./model/useItem');
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -48,6 +49,10 @@ app.get('/getAllStores',  getAllStores);
 app.post('/searchItems', searchItems);
 app.post('/newItem', newItem);
 app.post('/newStore', newStore);
+app.post('/useItem', (req, res) => {
+  const UseItem = new useItem(req, res);
+  UseItem.updateInv();
+});
 //this route renders the UI. The UI will check for the cookie and token
 //and log the user out if they don't exist.
 app.all('/*', (req, res) => {

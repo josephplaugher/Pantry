@@ -39,6 +39,7 @@ class NewItem extends React.Component{
             response={this.response}  
             valrules={ValRules}>
         <Input name="item" label="Item" />
+        <Input name="brand" label="Brand" />
         <Input name="decription" label="Description" />
         <Input name="units" label="Units per package" /> 
         <Input name="store" label="Grocery Store" />

@@ -49,8 +49,9 @@ class AllStores extends React.Component {
 
     render() {
       const columns = [
-        {Header: 'Store Name', accessor: 'store'},
-        {Header: 'ID', accessor: 'id'}]
+        {Header: 'ID', accessor: 'id', width: 30},
+        {Header: 'Store Name', accessor: 'store'}
+        ]
 
       return (
         <div id="workingPane">

@@ -29,6 +29,12 @@ const ValRules = [
         required: true,
         alphanumeric: true,
         errorMsg: 'Please provide a date'
+    },
+    {
+        name: 'quantity',
+        required: false,
+        numeric: true,
+        errorMsg: 'How many do you want?'
     }
 ]
 
