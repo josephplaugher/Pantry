@@ -38,12 +38,12 @@ class NewItem extends React.Component{
             action={`${SetUrl()}/newItem`} 
             response={this.response}  
             valrules={ValRules}>
-        <Input name="item" label="Item" />
-        <Input name="brand" label="Brand" />
-        <Input name="decription" label="Description" />
-        <Input name="units" label="Units per package" /> 
-        <Input name="store" label="Grocery Store" />
-        <Input name="storage" label="Storage Location" />
+        <Input name="item" label="Item" className="textinput" labelClass="label" errorClass="input-error"/>
+        <Input name="brand" label="Brand" className="textinput" labelClass="label" errorClass="input-error"/>
+        <Input name="decription" label="Description" className="textinput" labelClass="label" errorClass="input-error"/>
+        <Input name="units" label="Units per package" className="textinput" labelClass="label" errorClass="input-error"/> 
+        <Input name="store" label="Grocery Store" className="textinput" labelClass="label" errorClass="input-error"/>
+        <Input name="storage" label="Storage Location" className="textinput" labelClass="label" errorClass="input-error"/>
         <div className="buttondiv">
           <Button id="submit" value="Save New Item" />
         </div>

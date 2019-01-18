@@ -8,7 +8,8 @@ class UseItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userNotify: ''
+            userNotify: '',
+            v: undefined
         }
         this.response = this.response.bind(this);
     }
@@ -28,7 +29,7 @@ class UseItem extends React.Component {
                     response={this.response}
                     valrules={ValRules}
                     extraData={{ id: this.props.itemID }} >
-                    <Input name="quantity" label="How many?" className="textinput" labelClass="label" errorClass="input-error" />
+                    <Input name="quantity" value={this.state.v} label="How many?" className="textinput" labelClass="label" errorClass="input-error" />
                     <div className="buttondiv">
                         <Button id="submit" value="Use" />
                     </div>

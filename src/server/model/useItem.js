@@ -20,7 +20,7 @@ UseItem.prototype.updateInv = function() {
   }
   dbConn.query(query)
       .then(data => {
-        console.log('update inv', data[0])
+        console.log('update inv', data.rows[0])
         this.invData = data.rows[0];
         //then it updates the shopping list
         this.updateShoppingList();

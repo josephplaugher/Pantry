@@ -54,17 +54,21 @@ class SearchItems extends React.Component {
       {Header: 'Grocery Store', accessor: 'store'},
       {Header: 'Storage Location', accessor: 'storage'}]
 
+    const lsrURL = SetUrl() + '/liveSearch'
     return (
       <div id="workingPane">
         <Form formTitle="Search Pantry For Items" 
               action={`${SetUrl()}/searchItems`} 
-              response={this.response}
-              valrules={ValRules}  >
-          <Input name="item" label="Item" />
-          <Input name="decription" label="Description" />
-          <Input name="units" label="Units per package" /> 
-          <Input name="store" label="Grocery Store" />
-          <Input name="storage" label="Storage Location" />
+              response={this.response}  
+              valrules={ValRules}
+              liveSearch={false}
+              lsa={['item','store']}
+              lsrURL={lsrURL} >
+          <Input name="item" label="Item" className="textinput" labelClass="label" errorClass="input-error" />
+          <Input name="decription" label="Description" className="textinput" labelClass="label" errorClass="input-error"  />
+          <Input name="units" label="Units per package" className="textinput" labelClass="label" errorClass="input-error" /> 
+          <Input name="store" label="Grocery Store" className="textinput" labelClass="label" errorClass="input-error" />
+          <Input name="storage" label="Storage Location" className="textinput" labelClass="label" errorClass="input-error" />
           <div className="buttondiv">
             <Button id="submit" value="Search" />
           </div>
@@ -89,13 +93,12 @@ class SearchItems extends React.Component {
             {this.state.dataView ? (
               <div id="lightbox-container" className="lightbox-background">
               <LightBox close={this.closeLightBox} >
-                <Form formTitle="Transactions Details" clearOnSubmit="false" >
-                <Input name="transid" label="Trans ID" prePopVal={this.state.transid} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="itemdate" label="Item Date" prePopVal={this.state.itemdate} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="gldate" label="Ledger Date" prePopVal={this.state.gldate} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="debit" label="Debit" prePopVal={this.state.debit} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="credit" label="Credit" prePopVal={this.state.credit} className="textinput" labelClass="label" errorClass="input-error" /> 
-                <Input name="transtype" label="Transaction Type" prePopVal={this.state.transtype} className="textinput" labelClass="label" errorClass="input-error" />
+                <Form formTitle="Item Details" clearOnSubmit="false" >
+                <Input name="item" label="Item" prePopVal={this.state.item} className="textinput" labelClass="label" errorClass="input-error" />
+                <Input name="description" label="Description" prePopVal={this.state.description} className="textinput" labelClass="label" errorClass="input-error" />
+                <Input name="units" label="Units" prePopVal={this.state.units} className="textinput" labelClass="label" errorClass="input-error" />
+                <Input name="store" label="Grocery Store" prePopVal={this.state.store} className="textinput" labelClass="label" errorClass="input-error" />
+                <Input name="storage" label="Storage Location" prePopVal={this.state.storage} className="textinput" labelClass="label" errorClass="input-error" /> 
                 </Form>
               </LightBox>  
               </div>

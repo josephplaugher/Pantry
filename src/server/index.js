@@ -9,6 +9,7 @@ const newItem = require('./model/newItem');
 const newStore = require('./model/newStore');
 const searchItems = require('./model/searchItems');
 const useItem = require('./model/useItem');
+const LiveSearch = require('./model/liveSearch');
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
@@ -52,6 +53,10 @@ app.post('/newStore', newStore);
 app.post('/useItem', (req, res) => {
   const UseItem = new useItem(req, res);
   UseItem.updateInv();
+});
+app.get('/liveSearch/name/:name/value/:value', (req, res) => {
+  const LS = new LiveSearch(req, res);
+  LS.Run();
 });
 //this route renders the UI. The UI will check for the cookie and token
 //and log the user out if they don't exist.

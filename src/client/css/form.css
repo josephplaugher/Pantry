@@ -16,14 +16,15 @@
 
 .input-container {
     display: inline-block;
-    margin: 5px;
+    margin: 15px;
 }
 
 .label {
+    color: #2665C4;
     position: absolute;
     margin-top: -9px;
     margin-left: 10px;
-    font-size: 8px;
+    font-size: 14px;
 }
 
 .input-error {

@@ -8,7 +8,7 @@ import Home from './mainmenu/home'
 import 'css/main.css'
 import 'css/userNotify.css'
 
-class AppreciateCo extends React.Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -93,4 +93,4 @@ class AppreciateCo extends React.Component {
 
 }
 
-export default AppreciateCo;
+export default App;

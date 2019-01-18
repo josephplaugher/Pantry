@@ -3,6 +3,11 @@ import 'css/lightbox.css'
 import 'css/form.css'
 
 class LightBox extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {}
+    }
+    
     render() {
         
         return (
