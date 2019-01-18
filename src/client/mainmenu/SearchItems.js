@@ -3,6 +3,7 @@ import React from 'react'
 import ReactTable from 'react-table'
 import EB from 'Util/EB'
 import SetUrl from 'Util/SetUrl'
+import ItemView from './ItemView'
 import ValRules from 'Util/ValRules'
 import LightBox from 'Util/LightBox'
 import 'css/workingPane.css'
@@ -20,16 +21,14 @@ class SearchItems extends React.Component {
 
   selectItem = (row) => {
     //switch from data view to search view
-    this.setState({ dataView: true, userNotify: {}});
+    this.setState({ dataView: true, userNotify: ''});
 
-    //place all the resulting data into state
+    //place all the resulting data into itemViewData state
+    var itemData = {}
     for(var key in row){
-      //clear previous selection
-      //fill with new data select
-      this.setState({
-        [key]: row[key]
-      }); 
+      itemData[key] = row[key];
     }
+    this.setState({itemViewData: itemData})
   }
 
   closeLightBox = () => {
@@ -93,13 +92,7 @@ class SearchItems extends React.Component {
             {this.state.dataView ? (
               <div id="lightbox-container" className="lightbox-background">
               <LightBox close={this.closeLightBox} >
-                <Form formTitle="Item Details" clearOnSubmit="false" >
-                <Input name="item" label="Item" prePopVal={this.state.item} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="description" label="Description" prePopVal={this.state.description} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="units" label="Units" prePopVal={this.state.units} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="store" label="Grocery Store" prePopVal={this.state.store} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="storage" label="Storage Location" prePopVal={this.state.storage} className="textinput" labelClass="label" errorClass="input-error" /> 
-                </Form>
+                <ItemView data={this.state.itemViewData}/>
               </LightBox>  
               </div>
             ):(

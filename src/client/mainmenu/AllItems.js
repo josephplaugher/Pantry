@@ -4,8 +4,7 @@ import ReactTable from 'react-table'
 import EB from 'Util/EB'
 import SetUrl from 'Util/SetUrl'
 import LightBox from 'Util/LightBox'
-import UseItem from 'Util/UseItem'
-import {Form, Input, Button} from 'reactform-appco'
+import ItemView from './ItemView'
 import 'css/workingPane.css'
 import 'css/form.css'
 import 'react-table/react-table.css'
@@ -17,7 +16,8 @@ class AllItems extends React.Component {
     this.state = {
       dataView: false,
       table:[],
-      userNotify: {}
+      userNotify: {},
+      itemViewData: {}
     }
   }
   
@@ -34,14 +34,12 @@ class AllItems extends React.Component {
     //switch from data view to search view
     this.setState({ dataView: true, userNotify: ''});
 
-    //place all the resulting data into state
+    //place all the resulting data into itemViewData state
+    var itemData = {}
     for(var key in row){
-      //clear previous selection
-      //fill with new data select
-      this.setState({
-        [key]: row[key]
-      }); 
+      itemData[key] = row[key];
     }
+    this.setState({itemViewData: itemData})
   }
 
   closeLightBox = () => {
@@ -79,20 +77,7 @@ class AllItems extends React.Component {
             {this.state.dataView ? (
               <div id="lightbox-container" className="lightbox-background">
               <LightBox close={this.closeLightBox} >
-                <Form formTitle="Item Details" onSubmit={this.onSubmit}  >
-                <Input name="id" label="Item ID" prePopVal={this.state.id} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="item" label="item" prePopVal={this.state.item} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="description" label="Description" prePopVal={this.state.description} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="unit" label="Units per package" prePopVal={this.state.unit} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="store" label="Grocery Store" prePopVal={this.state.store} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="storage" label="Storage Location" prePopVal={this.state.storage} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="par" label="Par" prePopVal={this.state.par} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="instock" label="In Stock" prePopVal={this.state.instock} className="textinput" labelClass="label" errorClass="input-error" />
-                <Input name="shoppinglist" label="Shopping List" prePopVal={this.state.shoppinglist} className="textinput" labelClass="label" errorClass="input-error" />
-                </Form>
-              <EB comp="Use Item in AllItems">
-                <UseItem itemID={this.state.id} />
-              </EB>  
+                <ItemView data={this.state.itemViewData}/>
               </LightBox>  
               </div>
             ):(
