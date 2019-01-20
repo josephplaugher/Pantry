@@ -38,7 +38,7 @@ class NewStore extends React.Component{
             action={`${SetUrl()}/newStore`} 
             response={this.response}  
             valrules={ValRules}>
-        <Input name="store" label="Store Name" />
+        <Input name="store" label="Store Name" className="textinput" labelClass="label" errorClass="input-error"/>
         <div className="buttondiv">
           <Button id="submit" value="Save New Store" />
         </div>

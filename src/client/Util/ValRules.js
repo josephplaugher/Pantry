@@ -31,10 +31,16 @@ const ValRules = [
         errorMsg: 'Please provide a date'
     },
     {
-        name: 'quantity',
+        name: 'instock',
         required: false,
         numeric: true,
-        errorMsg: 'How many do you want?'
+        errorMsg: 'How much do you currently have? E.G. 3.'
+    },
+    {
+        name: 'par',
+        required: false,
+        numeric: true,
+        errorMsg: 'what is the minimum you want in stock? E.G. 3.'
     }
 ]
 

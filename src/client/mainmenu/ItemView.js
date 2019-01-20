@@ -28,6 +28,9 @@ class ItemView extends React.Component {
                     <Input name="par" label="Par" prePopVal={this.props.data.par} className="textinput" labelClass="label" errorClass="input-error" />
                     <Input name="instock" label="In Stock" prePopVal={this.props.data.instock} className="textinput" labelClass="label" errorClass="input-error" />
                     <Input name="shoppinglist" label="Shopping List" prePopVal={this.props.data.shoppinglist} className="textinput" labelClass="label" errorClass="input-error" />
+                    <div className="buttondiv">
+                        <Button id="submit" value="Save Changes" />
+                    </div>
                 </Form>
                 <EB comp="Use Item in AllItems">
                     <UseItem itemID={this.props.data.id} />

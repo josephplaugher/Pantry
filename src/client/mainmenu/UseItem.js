@@ -24,6 +24,7 @@ class UseItem extends React.Component {
     render() {
         return (
             <>
+            <br/>
                 <Form formTitle="Use Item"
                     action={`${SetUrl()}/useItem`}
                     response={this.response}
@@ -33,7 +34,7 @@ class UseItem extends React.Component {
                     <div className="buttondiv">
                         <Button id="submit" value="Use" />
                     </div>
-                    <div>
+                    <div id="notify-box">
                         <p id="userNotify">{this.state.userNotify}</p>
                     </div>
                 </Form>
