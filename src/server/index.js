@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const cookieParser = require('cookie-parser');
 const getAllItems = require('./model/getAllItems');
+const getShoppingList = require('./model/getShoppingList');
 const getAllStores = require('./model/getAllStores');
 const newItem = require('./model/newItem');
 const newStore = require('./model/newStore');
@@ -46,6 +47,7 @@ app.get('/checkLoginState', Auth, (req, res) => {
 */
 
 app.get('/getAllItems',  getAllItems);
+app.get('/getShoppingList',  getShoppingList);
 app.get('/getAllStores',  getAllStores);
 app.post('/searchItems', searchItems);
 app.post('/newItem', newItem);

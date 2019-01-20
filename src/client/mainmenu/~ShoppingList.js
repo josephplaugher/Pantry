@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button} from 'reactform-appco'
 import Ajax from 'Util/Ajax'
 import ReactTable from 'react-table'
 import EB from 'Util/EB'
@@ -9,7 +10,7 @@ import 'css/workingPane.css'
 import 'css/form.css'
 import 'react-table/react-table.css'
 
-class AllItems extends React.Component {
+class hShoppingList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -19,16 +20,16 @@ class AllItems extends React.Component {
       userNotify: {},
       itemViewData: {}
     }
-    this.getAllItems = this.getAllItems.bind(this);
+    this.getShoppingList = this.getShoppingList.bind(this);
   }
   
   componentDidMount() {
-    this.getAllItems();
+    this.getShoppingList();
   }
 
-  getAllItems = () => {
+  getShoppingList = () => {
     console.log('get all')
-    Ajax.get(SetUrl() + "/getAllItems")
+    Ajax.get(SetUrl() + "/getShoppingList")
     .then(res => {
         this.setState({
           table: res.data.table
@@ -53,32 +54,21 @@ class AllItems extends React.Component {
   }
 
     render() {
-      const columns = [
-        {Header: 'ID', accessor: 'id', width: 30},
-        {Header: 'Item', accessor: 'item'},
-        {Header: 'Description', accessor: 'description'},
-        {Header: 'Units per Package', accessor: 'units'},
-        {Header: 'Grocery Store', accessor: 'store'},
-        {Header: 'Storage Location', accessor: 'storage'}]
-
+      const list = this.state.table.map((item) => 
+        <div className="list-row" key={item.id}>{`${item.item}, ${item.store}, ${item.instore_location}, ${item.shoppinglist} `} 
+          <input type="checkbox" onClick={() => this.markPurchased.bind(this)} />Mark Purchased
+          <Button onClick={() => this.remove.bind(this)} value="Remove"/>
+        </div>
+      )
       return (
         <div id="workingPane">
           <p className="formTitle">All Pantry Items</p>
-            <div >
-            <EB comp="ReactTable in COA">
-            <ReactTable
-              getTdProps={(state, rowInfo, column, instance) => {
-                return {
-                  onClick: (e, handleOriginal) => {this.selectItem(rowInfo.original);}
-                }
-                }
-              }
-              data={this.state.table}
-              columns={columns}
-            />
+            <>
+            <EB comp="List in shopping list">
+              {list}
             </EB>
-            </div>
-            
+            </>
+            {/*
             <div >  
             {this.state.dataView ? (
               <div id="lightbox-container" className="lightbox-background">
@@ -90,10 +80,11 @@ class AllItems extends React.Component {
               null
             )}
             </div>
+            */}
             
         </div>
       )
     }
 }
 
-export default AllItems;
+export default hShoppingList;

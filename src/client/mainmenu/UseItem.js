@@ -18,6 +18,7 @@ class UseItem extends React.Component {
         if(res.success === true) {
           let msg = res.userNotify;
           this.setState({userNotify: msg});
+          this.props.getAllItems();
         }
       }
 

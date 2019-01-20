@@ -33,7 +33,7 @@ class ItemView extends React.Component {
                     </div>
                 </Form>
                 <EB comp="Use Item in AllItems">
-                    <UseItem itemID={this.props.data.id} />
+                    <UseItem itemID={this.props.data.id} getAllItems={this.props.getAllItems}/>
                 </EB>
             </>
         )

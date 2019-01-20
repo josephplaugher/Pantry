@@ -45,6 +45,8 @@ class NewItem extends React.Component{
         <Input name="par" label="Par" className="textinput" labelClass="label" errorClass="input-error"/> 
         <Input name="instock" label="In Stock" className="textinput" labelClass="label" errorClass="input-error"/>
         <Input name="storage" label="Storage Location" className="textinput" labelClass="label" errorClass="input-error"/>
+        <Input name="store" label="Grocery Store" className="textinput" labelClass="label" errorClass="input-error"/>
+        <Input name="instore_location" label="In-Store Location" className="textinput" labelClass="label" errorClass="input-error"/>
         <div className="buttondiv">
           <Button id="submit" value="Save New Item" />
         </div>

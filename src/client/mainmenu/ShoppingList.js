@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button} from 'reactform-appco'
 import Ajax from 'Util/Ajax'
 import ReactTable from 'react-table'
 import EB from 'Util/EB'
@@ -9,7 +10,7 @@ import 'css/workingPane.css'
 import 'css/form.css'
 import 'react-table/react-table.css'
 
-class AllItems extends React.Component {
+class ShoppingList extends React.Component {
 
   constructor(props) {
     super(props);
@@ -56,15 +57,21 @@ class AllItems extends React.Component {
       const columns = [
         {Header: 'ID', accessor: 'id', width: 30},
         {Header: 'Item', accessor: 'item'},
-        {Header: 'Description', accessor: 'description'},
-        {Header: 'Units per Package', accessor: 'units'},
         {Header: 'Grocery Store', accessor: 'store'},
-        {Header: 'Storage Location', accessor: 'storage'}]
+        {Header: 'In-Store Location', accessor: 'instore_location'},
+        {Header: 'Action', Cell: (
+          <>
+          <input type="checkbox" name="purchased" onClick={() => this.markPurchased.bind(this)} />
+          <label for="purchased">Purchased</label><br/>
+          <Button onClick={() => this.remove.bind(this)} value="Remove"/> 
+          </>
+        ) }
+      ]
+ 
 
       return (
         <div id="workingPane">
-          <p className="formTitle">All Pantry Items</p>
-            <div >
+          <p className="formTitle">Shopping List</p>
             <EB comp="ReactTable in COA">
             <ReactTable
               getTdProps={(state, rowInfo, column, instance) => {
@@ -77,23 +84,9 @@ class AllItems extends React.Component {
               columns={columns}
             />
             </EB>
-            </div>
-            
-            <div >  
-            {this.state.dataView ? (
-              <div id="lightbox-container" className="lightbox-background">
-              <LightBox close={this.closeLightBox} >
-                <ItemView data={this.state.itemViewData} getAllItems={this.getAllItems}/>
-              </LightBox>  
-              </div>
-            ):(
-              null
-            )}
-            </div>
-            
         </div>
       )
     }
 }
 
-export default AllItems;
+export default ShoppingList;
