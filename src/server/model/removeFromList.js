@@ -13,4 +13,4 @@ RemoveFromList = (req, res) => {
       .catch(e => console.error(e.stack))
 }
 
-module.exports = GetShoppingList;
+module.exports = RemoveFromList;

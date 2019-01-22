@@ -9,6 +9,7 @@ import ShoppingMenu from './ShoppingMenu'
 import 'css/workingPane.css'
 import 'css/form.css'
 import 'react-table/react-table.css'
+import 'css/sloverride.css'
 
 class ShoppingList extends React.Component {
 
@@ -23,7 +24,6 @@ class ShoppingList extends React.Component {
     }
     this.getAllItems = this.getAllItems.bind(this);
     this.remove = this.remove.bind(this);
-    this.markPurchased = this.markPurchased.bind(this);
     this.saveForLater = this.saveForLater.bind(this);
   }
 
@@ -32,7 +32,7 @@ class ShoppingList extends React.Component {
   }
 
   getAllItems = () => {
-    Ajax.get(SetUrl() + "/getAllItems")
+    Ajax.get(SetUrl() + "/getShoppingList")
       .then(res => {
         this.setState({
           table: res.data.table,
@@ -48,13 +48,6 @@ class ShoppingList extends React.Component {
     })
   }
 
-  markPurchased = (currentItem) => {
-    Ajax.get(SetUrl() + "/markPurchased/" + currentItem.id)
-      .then(() => {
-        this.getAllItems()
-      })
-  }
-
   saveForLater = (currentItem) => {
     const oldList = this.state.table;
     const newList = []
@@ -68,8 +61,13 @@ class ShoppingList extends React.Component {
     this.closeLightBox()    
   }
 
-  remove = (event) => {
-    console.log('remove', event)
+  remove = (currentItem) => {
+    Ajax.get(SetUrl() + "/removeFromList/" + currentItem.id)
+      .then(() => {
+        //after removing from the list in the database, we remove it from the UI
+        //this way rather than querying the database a second time.
+        this.saveForLater(currentItem)
+      })
   }
 
   closeLightBox = () => {
@@ -81,6 +79,7 @@ class ShoppingList extends React.Component {
     const columns = [
       { Header: 'ID', accessor: 'id', width: 30 },
       { Header: 'Item', accessor: 'item' },
+      { Header: 'Quant', accessor: 'shoppinglist', width: 50 },
       { Header: 'Grocery Store', accessor: 'store' },
       { Header: 'In-Store Location', accessor: 'instore_location' }
     ]
@@ -103,15 +102,14 @@ class ShoppingList extends React.Component {
         </EB>
         <EB comp="lightbox in shopping list" >
           {this.state.dataView ? (
-            <div id="lightbox-container" className="lightbox-background">
-              <LightBox close={this.closeLightBox} >
+            <>
+              <LightBox close={this.closeLightBox} lbOverrideClassName="slOverRide">
                 <ShoppingMenu currentItem={this.state.currentItem} 
                     saveForLater={this.saveForLater}
                     remove={this.remove} 
-                    markPurchased={this.markPurchased}
                 />
               </LightBox>
-            </div>
+            </>
           ) : (
               null
             )}

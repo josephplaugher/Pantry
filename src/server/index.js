@@ -5,7 +5,7 @@ const app = express();
 const cookieParser = require('cookie-parser');
 const getAllItems = require('./model/getAllItems');
 const getShoppingList = require('./model/getShoppingList');
-//const markPurchased = require('./model/')
+const markPurchased = require('./model/markPurchased')
 const removeFromList = require('./model/removeFromList');
 const getAllStores = require('./model/getAllStores');
 const newItem = require('./model/newItem');
@@ -50,6 +50,7 @@ app.get('/checkLoginState', Auth, (req, res) => {
 
 app.get('/getAllItems',  getAllItems);
 app.get('/getShoppingList',  getShoppingList);
+app.post('/markPurchased', markPurchased);
 app.get('/removeFromList/:id',  removeFromList);
 app.get('/getAllStores',  getAllStores);
 app.post('/searchItems', searchItems);

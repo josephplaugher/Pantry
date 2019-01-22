@@ -57,7 +57,8 @@ class AllItems extends React.Component {
         {Header: 'ID', accessor: 'id', width: 30},
         {Header: 'Item', accessor: 'item'},
         {Header: 'Description', accessor: 'description'},
-        {Header: 'Units per Package', accessor: 'units'},
+        {Header: 'Stock', accessor: 'instock', width: 60},
+        {Header: 'Per Package', accessor: 'units', width: 80},
         {Header: 'Grocery Store', accessor: 'store'},
         {Header: 'Storage Location', accessor: 'storage'}]
 
