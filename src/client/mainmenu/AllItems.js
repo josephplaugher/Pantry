@@ -78,7 +78,7 @@ class AllItems extends React.Component {
                 }
                 }
               }
-              data={this.state.table}
+              data={this.state.table || []}
               columns={columns}
             />
             </EB>

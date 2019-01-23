@@ -1,7 +1,6 @@
 const dbConn = require('../util/postgres');
 
 AddToList = (req, res) => {
-  console.log('add to list', req.body)
   const query = {
     "text":`UPDATE inventory 
       SET shoppinglist = shoppinglist + $1 

@@ -32,7 +32,7 @@
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-table": "^6.8.5",
-    "reactform-appco": "^2.0.0",
+    "reactform-appco": "2.0.0",
     "router-express": "^1.5.2"
   },
   "devDependencies": {

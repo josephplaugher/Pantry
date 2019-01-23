@@ -7,7 +7,6 @@ function LiveSearch(req, res) {
 }
 
 LiveSearch.prototype.Run = function() {
-    console.log('name', this.name, 'val', this.val)
     let query = this.setQuery(this.name, this.val);    
     this.runQuery(query, this.val); 
 }

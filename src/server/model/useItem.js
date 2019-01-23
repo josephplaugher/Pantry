@@ -20,7 +20,6 @@ UseItem.prototype.updateInv = function() {
   }
   dbConn.query(query)
       .then(data => {
-        //console.log('update inv', data.rows[0])
         this.invData = data.rows[0];
         //then it updates the shopping list
         this.updateShoppingList();
@@ -33,9 +32,7 @@ UseItem.prototype.updateInv = function() {
 UseItem.prototype.updateShoppingList = function() {
   const inv = this.invData;
   if(inv.instock < inv.par) { 
- // console.log('update list running', 'add:',inv.units, 'item id:', inv.id)
     var amtToAdd = inv.par - inv.instock;
-    console.log('amt to add, ',amtToAdd)
     const query = {
       "text": `UPDATE inventory 
         SET shoppinglist = shoppinglist + $1
@@ -46,7 +43,6 @@ UseItem.prototype.updateShoppingList = function() {
     }
     dbConn.query(query)
         .then(data => {
-          console.log('list updated')
           //if the query ran, this is the response.
           this.res.status(200).json({ success: true, userNotify: 'Inventory and Shopping List Updated' })
         })

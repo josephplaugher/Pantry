@@ -20,7 +20,6 @@ class NewItem extends React.Component{
   }
 
   response = (res) => {
-    console.log('resp:', res)
     if(res.success === true) {
       let msg = res.userNotify;
       this.setState({userNotify: msg});

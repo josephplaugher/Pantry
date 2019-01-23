@@ -33,7 +33,6 @@ Query.prototype.returnResult = function () {
     return new Promise((resolve) => {
         userConn.query(this.query)
             .then(data => {
-                //console.log('the query: ', this.query, 'result: ', data)
                 resolve(data);
             })
             .catch(e => {
