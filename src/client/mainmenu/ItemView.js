@@ -1,6 +1,7 @@
 import React from 'react'
 import EB from 'Util/EB'
 import UseItem from './UseItem'
+import AddToShoppingList from './AddToShoppingList'
 import { Form, Input, Button } from 'reactform-appco'
 import 'css/workingPane.css'
 import 'css/form.css'
@@ -11,14 +12,15 @@ class ItemView extends React.Component {
         super(props);
         this.state = {
             userNotify: {},
-            data: {}
+            data: {},
+            editMode: false
         }
     }
 
     render() {
         return (
             <>
-                <Form formTitle="Item Details" onSubmit={this.onSubmit}  >
+                <Form formTitle="Item Details" >
                     <Input name="id" label="Item ID" prePopVal={this.props.data.id} className="textinput" labelClass="label" errorClass="input-error" />
                     <Input name="item" label="item" prePopVal={this.props.data.item} className="textinput" labelClass="label" errorClass="input-error" />
                     <Input name="description" label="Description" prePopVal={this.props.data.description} className="textinput" labelClass="label" errorClass="input-error" />
@@ -29,11 +31,14 @@ class ItemView extends React.Component {
                     <Input name="instock" label="In Stock" prePopVal={this.props.data.instock} className="textinput" labelClass="label" errorClass="input-error" />
                     <Input name="shoppinglist" label="Shopping List" prePopVal={this.props.data.shoppinglist} className="textinput" labelClass="label" errorClass="input-error" />
                     <div className="buttondiv">
-                        <Button id="submit" value="Save Changes" />
+                        <Button id="edit" value="Edit" />
                     </div>
                 </Form>
                 <EB comp="Use Item in AllItems">
                     <UseItem itemID={this.props.data.id} getAllItems={this.props.getAllItems}/>
+                </EB>
+                <EB comp="Add to Shopping List in AllItems">
+                    <AddToShoppingList itemData={this.props.data} getAllItems={this.props.getAllItems}/>
                 </EB>
             </>
         )

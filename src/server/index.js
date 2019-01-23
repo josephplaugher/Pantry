@@ -2,11 +2,13 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const SetUrl = require('./util/SetUrl');
 const cookieParser = require('cookie-parser');
 const getAllItems = require('./model/getAllItems');
 const getShoppingList = require('./model/getShoppingList');
 const markPurchased = require('./model/markPurchased')
 const removeFromList = require('./model/removeFromList');
+const addToList = require('./model/addToList');
 const getAllStores = require('./model/getAllStores');
 const newItem = require('./model/newItem');
 const newStore = require('./model/newStore');
@@ -24,7 +26,7 @@ app.listen(port, function(){
 });
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.BASE_URL);
+  res.header("Access-Control-Allow-Origin", SetUrl() );
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type, authorization");
   res.set("X-Powered-By", "Maleries Pantry");
@@ -52,6 +54,7 @@ app.get('/getAllItems',  getAllItems);
 app.get('/getShoppingList',  getShoppingList);
 app.post('/markPurchased', markPurchased);
 app.get('/removeFromList/:id',  removeFromList);
+app.post('/addToList', addToList);
 app.get('/getAllStores',  getAllStores);
 app.post('/searchItems', searchItems);
 app.post('/newItem', newItem);

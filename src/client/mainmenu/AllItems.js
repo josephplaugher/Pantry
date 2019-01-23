@@ -20,6 +20,7 @@ class AllItems extends React.Component {
       itemViewData: {}
     }
     this.getAllItems = this.getAllItems.bind(this);
+    this.setItemViewData = this.setItemViewData.bind(this);
   }
   
   componentDidMount() {
@@ -27,9 +28,8 @@ class AllItems extends React.Component {
   }
 
   getAllItems = () => {
-    console.log('get all')
     Ajax.get(SetUrl() + "/getAllItems")
-    .then(res => {
+    .then((res) => {
         this.setState({
           table: res.data.table
         })
@@ -45,6 +45,10 @@ class AllItems extends React.Component {
     for(var key in row){
       itemData[key] = row[key];
     }
+    this.setItemViewData(itemData)
+  }
+
+  setItemViewData = (itemData) => {
     this.setState({itemViewData: itemData})
   }
 

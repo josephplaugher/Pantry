@@ -5,7 +5,7 @@ import ValRules from 'Util/ValRules'
 import 'css/workingPane.css'
 import 'css/form.css'
 import 'css/userNotify.css'
-import 'css/lsr.css'
+//import 'css/lsr.css'
 
 class NewStore extends React.Component{
   
