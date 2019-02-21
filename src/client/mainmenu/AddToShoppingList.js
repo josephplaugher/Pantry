@@ -1,10 +1,10 @@
 import React from 'react'
-import { Form, Input, Button } from 'reactform-appco'
+import { FormClass, Input, Button } from 'reactform-appco'
 import SetUrl from 'Util/SetUrl'
 import ValRules from 'Util/ValRules'
 import 'css/form.css'
 
-class AddToShoppingList extends React.Component {
+class AddToShoppingList extends FormClass {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,19 +26,16 @@ class AddToShoppingList extends React.Component {
         return (
             <>
             <br/>
-                <Form formTitle="Add to Shopping List"
-                    action={`${SetUrl()}/addToList`}
-                    response={this.response}
-                    valrules={ValRules}
-                    extraData={{ id: this.props.itemData.id }} >
-                    <Input name="quantity" value={this.state.v} label="How many?" className="textinput" labelClass="label" errorClass="input-error" />
+            <p className="formTitle">Add to Shopping List</p>
+                <form onSubmit={this.rfa_onSubmit}>
+                    <Input name="quantity" value={this.state.v} onChange={this.rfa_onChange} error={this.state.userNotify.quantity} />
                     <div className="buttondiv">
                         <Button id="submit" value="Add to List" />
                     </div>
                     <div id="notify-box">
                         <p id="userNotify">{this.state.userNotify}</p>
                     </div>
-                </Form>
+                </form>
             </>
         )
     }

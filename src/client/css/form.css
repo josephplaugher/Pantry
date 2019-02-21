@@ -1,4 +1,4 @@
-.rfa_formTitle {
+.formTitle {
     color: #2665C4;
     font-size: 18px;
     text-align: left;
@@ -51,6 +51,6 @@
     margin-left: 30px;
 }
 
-.userNofity-success {
-    height: 40px;
+.userNotify-success {
+    color: #2665C4;
 }

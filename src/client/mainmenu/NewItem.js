@@ -12,6 +12,8 @@ class NewItem extends FormClass{
   constructor(props) {
     super(props);
     this.useLiveSearch = true
+    this.lsa = ['store']  //live search array. List of input names that will trigger a live search
+    this.lsRoute = SetUrl() + "/liveSearch"
     this.route = SetUrl() + "/newItem"
     this.valRules = ValRules
     this.state = {
@@ -43,8 +45,8 @@ class NewItem extends FormClass{
   }
 
   response = (res) => {
-    if(res.success === true) {
-      let msg = res.userNotify;
+    if(res.data.success === true) {
+      let msg = res.data.userNotify;
       this.setState({userNotify: msg});
     }
   }
@@ -54,6 +56,7 @@ class NewItem extends FormClass{
     return (
       <>
       <div id="workingPane">
+      <p className="formTitle">Create New Grocery item</p>
       <form onSubmit={this.rfa_onSubmit}>
         <Input name="item" label="Item" value={this.state.item} onChange={this.rfa_onChange} error={this.state.userNotify.item}/>
         <Input name="brand" label="Brand" value={this.state.brand} onChange={this.rfa_onChange} error={this.state.userNotify.brand}/>
@@ -67,8 +70,8 @@ class NewItem extends FormClass{
         <div className="buttondiv">
           <Button id="submit" value="Save New Item" />
         </div>
-          <p className="userNotify-success">{this.state.userNotify.success}</p>
-      </form>
+       </form>
+       <p className="userNotify-success">{this.state.userNotify.success}</p>
       </div>
       </>
     )

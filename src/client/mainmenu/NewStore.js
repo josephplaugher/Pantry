@@ -1,27 +1,33 @@
-import {Form, Input, Button} from 'reactform-appco'
+import {FormClass, Input, Button} from 'reactform-appco'
 import React from 'react'
 import SetUrl from 'Util/SetUrl'
 import ValRules from 'Util/ValRules'
 import 'css/workingPane.css'
 import 'css/form.css'
 import 'css/userNotify.css'
-//import 'css/lsr.css'
 
-class NewStore extends React.Component{
+class NewStore extends FormClass{
   
   constructor(props) {
     super(props);
+    this.route = SetUrl() + "/newStore"
+    this.valRules = ValRules
     this.state = {
       dataView: false,
       table: [],
-      userNotify: ''
+      userNotify: {},
+      formData: {
+        store: ''
+      },
+      store: ''
     }
     this.response = this.response.bind(this);
   }
 
   response = (res) => {
-    if(res.success === true) {
-      let msg = res.userNotify;
+    console.log('res:', res)
+    if(res.data.success === true) {
+      let msg = res.data.userNotify;
       this.setState({userNotify: msg});
     }
   }
@@ -29,24 +35,18 @@ class NewStore extends React.Component{
   render() {
 
     return (
-      <div>
-      <div id="userNotify">
-      </div>
+      <>
       <div id="workingPane">
-      <Form formTitle="New Store" 
-            action={`${SetUrl()}/newStore`} 
-            response={this.response}  
-            valrules={ValRules}>
-        <Input name="store" label="Store Name" className="textinput" labelClass="label" errorClass="input-error"/>
+      <p className="formTitle">Create New Grocery Store</p>
+      <form onSubmit={this.rfa_onSubmit}>
+        <Input name="store" label="Store Name" value={this.state.store} onChange={this.rfa_onChange} error={this.state.userNotify.item}/>
         <div className="buttondiv">
           <Button id="submit" value="Save New Store" />
         </div>
-        <div>
-          <p id="userNotify">{this.state.userNotify}</p>
-        </div>
-      </Form>
+      </form>
+      <p className="userNotify-success">{this.state.userNotify.success}</p>
       </div>
-      </div>
+      </>
     )
   }
 }

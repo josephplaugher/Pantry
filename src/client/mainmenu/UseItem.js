@@ -1,10 +1,10 @@
 import React from 'react'
-import { Form, Input, Button } from 'reactform-appco'
+import { FormClass, Input, Button } from 'reactform-appco'
 import SetUrl from 'Util/SetUrl'
 import ValRules from 'Util/ValRules'
 import 'css/form.css'
 
-class UseItem extends React.Component {
+class UseItem extends FormClass {
     constructor(props) {
         super(props);
         this.state = {
@@ -26,19 +26,16 @@ class UseItem extends React.Component {
         return (
             <>
             <br/>
-                <Form formTitle="Use Item"
-                    action={`${SetUrl()}/useItem`}
-                    response={this.response}
-                    valrules={ValRules}
-                    extraData={{ id: this.props.itemID }} >
-                    <Input name="quantity" value={this.state.v} label="How many?" className="textinput" labelClass="label" errorClass="input-error" />
+            <p className="formTitle">Use Item</p>
+                <form onSubmit={this.rfa_onSubmit}>
+                    <Input name="quantity" value={this.state.v} onChange={this.rfa_onChange} error={this.state.userNotify.quantity}  />
                     <div className="buttondiv">
                         <Button id="submit" value="Use" />
                     </div>
                     <div id="notify-box">
-                        <p id="userNotify">{this.state.userNotify}</p>
+                        <p className="userNotify-success">{this.state.userNotify.success}</p>
                     </div>
-                </Form>
+                </form>
             </>
         )
     }

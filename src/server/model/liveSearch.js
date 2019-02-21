@@ -15,11 +15,11 @@ LiveSearch.prototype.setQuery = function(name, val) {
     var query;
     switch(name) {
         case 'item':  
-            query = "SELECT id, item FROM inventory WHERE LOWER(item) LIKE LOWER($1) LIMIT 5";
+            query = "SELECT item FROM inventory WHERE LOWER(item) LIKE LOWER($1) LIMIT 5";
         break;
 
         case 'store':
-            query = "SELECT id, store FROM stores WHERE LOWER(store) LIKE LOWER($1) LIMIT 5";
+            query = "SELECT store FROM stores WHERE LOWER(store) LIKE LOWER($1) LIMIT 5";
         break;
 
         default:

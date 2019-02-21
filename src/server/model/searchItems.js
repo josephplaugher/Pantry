@@ -12,8 +12,8 @@ SearchItems = (req, res) => {
     ORDER BY item ASC`,
     "values": [req.body.item,
                 req.body.description,
-                req.body.units,
                 req.body.store,
+                req.body.units,
                 req.body.storage
               ]
   }

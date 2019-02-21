@@ -49,6 +49,7 @@ class AllItems extends React.Component {
   }
 
   setItemViewData = (itemData) => {
+    console.log('set view: ', itemData)
     this.setState({itemViewData: itemData})
   }
 
@@ -72,6 +73,7 @@ class AllItems extends React.Component {
             <div >
             <EB comp="ReactTable in COA">
             <ReactTable
+              filterable
               getTdProps={(state, rowInfo, column, instance) => {
                 return {
                   onClick: (e, handleOriginal) => {this.selectItem(rowInfo.original);}
