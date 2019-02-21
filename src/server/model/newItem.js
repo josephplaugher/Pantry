@@ -17,7 +17,7 @@ NewItem = (req, res) => {
               ]
   }
   dbConn.query(query)
-      .then(data => res.status(200).json({ success: true, userNotify: 'Item Added Successfully' }))
+      .then(data => res.status(200).json({ success: true, userNotify: {success:'Item Added Successfully' }}))
       .catch(e => console.error(e.stack))
 }
 

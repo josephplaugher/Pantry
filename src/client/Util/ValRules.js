@@ -37,6 +37,12 @@ const ValRules = [
         errorMsg: 'How much do you currently have? E.G. 3.'
     },
     {
+        name: 'units',
+        required: false,
+        numeric: true,
+        errorMsg: 'How many are in a package? E.G. 3.'
+    },
+    {
         name: 'par',
         required: false,
         numeric: true,

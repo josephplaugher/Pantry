@@ -1,20 +1,43 @@
-import {Form, Input, Button} from 'reactform-appco'
+import {FormClass, Input, Button} from 'reactform-appco'
 import React from 'react'
 import SetUrl from 'Util/SetUrl'
 import ValRules from 'Util/ValRules'
 import 'css/workingPane.css'
 import 'css/form.css'
 import 'css/userNotify.css'
-//import 'css/lsr.css'
+import 'css/lsr.css'
 
-class NewItem extends React.Component{
+class NewItem extends FormClass{
   
   constructor(props) {
     super(props);
+    this.useLiveSearch = true
+    this.route = SetUrl() + "/newItem"
+    this.valRules = ValRules
     this.state = {
       dataView: false,
       table: [],
-      userNotify: ''
+      userNotify: {},
+      formData: {
+        item: '',
+        brand: '',
+        description: '',
+        units: '',
+        par: '',
+        instock: '',
+        storage: '',
+        store: '',
+        instore_location: ''
+      },
+      item: '',
+      brand: '',
+      description: '',
+      units: '',
+      par: '',
+      instock: '',
+      storage: '',
+      store: '',
+      instore_location: ''
     }
     this.response = this.response.bind(this);
   }
@@ -29,32 +52,25 @@ class NewItem extends React.Component{
   render() {
 
     return (
-      <div>
-      <div id="userNotify">
-      </div>
+      <>
       <div id="workingPane">
-      <Form formTitle="New Item" 
-            action={`${SetUrl()}/newItem`} 
-            response={this.response}  
-            valrules={ValRules}>
-        <Input name="item" label="Item" className="textinput" labelClass="label" errorClass="input-error"/>
-        <Input name="brand" label="Brand" className="textinput" labelClass="label" errorClass="input-error"/>
-        <Input name="decription" label="Description" className="textinput" labelClass="label" errorClass="input-error"/>
-        <Input name="units" label="Units per package" className="textinput" labelClass="label" errorClass="input-error"/> 
-        <Input name="par" label="Par" className="textinput" labelClass="label" errorClass="input-error"/> 
-        <Input name="instock" label="In Stock" className="textinput" labelClass="label" errorClass="input-error"/>
-        <Input name="storage" label="Storage Location" className="textinput" labelClass="label" errorClass="input-error"/>
-        <Input name="store" label="Grocery Store" className="textinput" labelClass="label" errorClass="input-error"/>
-        <Input name="instore_location" label="In-Store Location" className="textinput" labelClass="label" errorClass="input-error"/>
+      <form onSubmit={this.rfa_onSubmit}>
+        <Input name="item" label="Item" value={this.state.item} onChange={this.rfa_onChange} error={this.state.userNotify.item}/>
+        <Input name="brand" label="Brand" value={this.state.brand} onChange={this.rfa_onChange} error={this.state.userNotify.brand}/>
+        <Input name="description" label="Description" value={this.state.description} onChange={this.rfa_onChange} error={this.state.userNotify.description}/>
+        <Input name="units" label="Units per package" value={this.state.units} onChange={this.rfa_onChange} error={this.state.userNotify.units}/> 
+        <Input name="par" label="Par" value={this.state.par} onChange={this.rfa_onChange} error={this.state.userNotify.par}/> 
+        <Input name="instock" label="In Stock" value={this.state.instock} onChange={this.rfa_onChange} error={this.state.userNotify.instock}/>
+        <Input name="storage" label="Storage Location" value={this.state.storage} onChange={this.rfa_onChange} error={this.state.userNotify.storage} lsr={this.state.lsrstorage}/>
+        <Input name="store" label="Grocery Store" value={this.state.store} onChange={this.rfa_onChange} error={this.state.userNotify.store} lsr={this.state.lsrstore}/>
+        <Input name="instore_location" label="In-Store Location" value={this.state.instore_location} onChange={this.rfa_onChange} error={this.state.userNotify.instore_location}/>
         <div className="buttondiv">
           <Button id="submit" value="Save New Item" />
         </div>
-        <div>
-          <p id="userNotify">{this.state.userNotify}</p>
-        </div>
-      </Form>
+          <p className="userNotify-success">{this.state.userNotify.success}</p>
+      </form>
       </div>
-      </div>
+      </>
     )
   }
 }
