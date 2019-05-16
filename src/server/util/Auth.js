@@ -31,7 +31,6 @@ Auth.prototype.compare = function() {
 		} catch (error) {
 			this.unsetLoginHeaders()
 		}
-		//console.log("verified token: ", verifiedToken);
 		//if the token and cookie match, renew them
 		this.renewLogin(verifiedToken, cookie.token)
 	} else {
@@ -41,7 +40,7 @@ Auth.prototype.compare = function() {
 
 Auth.prototype.renewLogin = function(verifiedToken, prevCookiePayload) {
 	//upon authentication, renew the token and the cookie
-	this.req.headers['dbconn'] = verifiedToken.userData.company_id
+	this.req.headers['dbconn'] = verifiedToken.userData.email
 	//delete verifiedToken.exp
 	var token = jwt.sign(
 		{ userData: verifiedToken.userData },

@@ -1,10 +1,6 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-//import User from './User'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import User from './User'
 import NewItem from './NewItem'
 import NewStore from './NewStore'
 import AllItems from './AllItems'
@@ -14,12 +10,20 @@ import ShoppingList from './ShoppingList'
 import 'css/main.css'
 import 'css/logo.css'
 
-const Home = () => (
+class Home extends React.Component {
+	constructor(props) {
+		super(props)
+	}
 
-  <div id="subRoutes">
-        <div id="logoBox"><h1>pantry</h1></div>
-        {/*<User lname={userData.lname} />*/}
-        <Router>
+	render() {
+		return (
+			<div id='subRoutes'>
+				<div id='logoBox'>
+					<h1>pantry</h1>
+				</div>
+				<User userData={this.props.userData} signOut={this.props.signOut} />
+				{/* prettier-ignore */}
+				<Router>
           <div>
         <div id="nav-pane">
                <Link to="/newItem" className="nav">New Item</Link>
@@ -39,8 +43,10 @@ const Home = () => (
        
         </div>
         </div>
-        </Router>  
-      </div>
-    )
+        </Router>
+			</div>
+		)
+	}
+}
 
-export default Home;
+export default Home

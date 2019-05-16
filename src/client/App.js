@@ -1,5 +1,6 @@
 import { FormClass, Input, Button } from 'reactform-appco'
 import React from 'react'
+import Ajax from 'Util/Ajax'
 import SetUrl from 'Util/SetUrl'
 import ValRules from 'Util/ValRules'
 import EB from 'Util/EB'
@@ -51,6 +52,7 @@ class App extends FormClass {
 			)
 			sessionStorage.setItem(process.env.TOKEN_NAME, res.data.token)
 			this.setState({
+				token: res.token,
 				userNotify: res.data.userNotify,
 				userData: res.data.userData,
 				isLoggedIn: true
@@ -77,7 +79,7 @@ class App extends FormClass {
 				<div>
 					{this.state.isLoggedIn ? (
 						<EB comp='Home'>
-							<Home userData={this.state.userData} />
+							<Home userData={this.state.userData} signOut={this.signOut} />
 						</EB>
 					) : (
 						<div id='sign-in'>

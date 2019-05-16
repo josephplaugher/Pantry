@@ -15,7 +15,9 @@ login.prototype.start = function() {
 	}
 	dbConn
 		.query(query)
-		.then((data) => this.checkPassword(this.req, this.res, data.rows[0]))
+		.then((data) => {
+			this.checkPassword(this.req, this.res, data.rows[0])
+		})
 		.catch((e) => console.error(e.stack))
 }
 

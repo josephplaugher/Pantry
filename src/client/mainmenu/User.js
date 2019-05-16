@@ -1,24 +1,32 @@
 import React, { Component } from 'react'
-import {Button} from 'reactform-appco'
-import 'css/user.css';
-import 'css/form.css';
+import { Button } from 'reactform-appco'
+import 'css/user.css'
+import 'css/form.css'
 
 class User extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: null
-    };
-  }
+	constructor(props) {
+		super(props)
+		this.state = {
+			error: null
+		}
+	}
 
-    render() {
-      return (
-      <div id="user">
-        <p>Signed in as {this.props.lname}, {this.props.fname}</p>
-        <Button id="sign out" className="submit" value="Sign Out" />
-      </div>
-      )
-    }
+	render() {
+		const signed = `Signed in as ${this.props.userData.lname}, ${
+			this.props.userData.fname
+		}`
+		return (
+			<div id='user'>
+				<p>{signed}</p>
+				<Button
+					id='sign out'
+					className='submit'
+					value='Sign Out'
+					onClick={this.props.signOut}
+				/>
+			</div>
+		)
+	}
 }
 
-export default User;
+export default User
